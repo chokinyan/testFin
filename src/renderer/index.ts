@@ -1,2 +1,2 @@
 //@ts-expect-error
-console.log(`${window.version.node}`);
+console.log(`${version.node}`);
