@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 
 let mainWindow: BrowserWindow;
@@ -10,7 +10,7 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'), // Chemin vers le preload
       contextIsolation: true, // Sécurité : isolement du contexte
-      nodeIntegration: false, // Sécurité : désactive l'intégration de Node.js dans le renderer
+      nodeIntegration: true, // Sécurité : désactive l'intégration de Node.js dans le renderer
       devTools: true, // Ouvre les outils de développement
     },
   });
@@ -19,7 +19,9 @@ function createWindow() {
   mainWindow.loadFile(path.join(__dirname, '../../public/index.html'));
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(()=>{
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

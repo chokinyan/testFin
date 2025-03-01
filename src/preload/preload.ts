@@ -1,8 +1,8 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron/renderer';
 
-// Expose des APIs au renderer process
-contextBridge.exposeInMainWorld('electronAPI', {
-  sendMessage: (channel: string, data: any) => ipcRenderer.send(channel, data),
-  onMessage: (channel: string, callback: (event: any, data: any) => void) =>
-    ipcRenderer.on(channel, callback),
+contextBridge.exposeInMainWorld("versions", {
+  node: () => process.versions.node,
+  chrome: () => process.versions.chrome,
+  electron: () => process.versions.electron,
+  ping: () => ipcRenderer.invoke("ping")
 });
