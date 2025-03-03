@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron';
+import { app, BrowserWindow, ipcMain, IpcMainEvent,screen } from 'electron';
 import {User,checkUser} from './utilisateur';
 import path from 'path';
 /*
@@ -29,6 +29,8 @@ function createWindow() {
 }
 
 app.on('ready', () => {
+
+  console.log(screen.getAllDisplays())
 
   ipcMain.handle("connect-user", checkUser);
 
