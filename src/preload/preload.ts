@@ -1,8 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron/renderer';
 
-contextBridge.exposeInMainWorld("versions", {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  ping: () => ipcRenderer.invoke("ping")
+contextBridge.exposeInMainWorld("connection",{
+  connection : (user: string, password: string) => ipcRenderer.invoke("connect-user",password, user),
 });
