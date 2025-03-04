@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain, IpcMainEvent,screen } from 'electron';
+import db from "./db";
 import {User,checkUser} from './utilisateur';
 import path from 'path';
 
