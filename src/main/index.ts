@@ -1,12 +1,7 @@
 import { app, BrowserWindow, ipcMain, IpcMainEvent,screen } from 'electron';
 import {User,checkUser} from './utilisateur';
 import path from 'path';
-/*
-https://rpcache-aa.meteofrance.com/internet2018client/2.0/observation/gridded?lat=47.747832&lon=7.337901&id=682240
 
-Bearer eyJjbGFzcyI6ImludGVybmV0IiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiJkYTMxNGY4ZTJkZTY0MmM4MDU1NTBiZjBmYTNlZmQxMiIsImlhdCI6MTc0MDg0NzQ2N30.VDt9VdJ7yk-0DMK38D3lKhEiIwwBFvpT30cHLsOL2-M
-
-*/
 let mainWindow: BrowserWindow;
 
 function createWindow() {
@@ -30,7 +25,6 @@ function createWindow() {
 
 app.on('ready', () => {
 
-  console.log(screen.getAllDisplays())
 
   ipcMain.handle("connect-user", checkUser);
 
