@@ -1,6 +1,6 @@
 import mariadb from "mariadb";
 
-export default interface DBConfig {
+export interface DBConfig {
     host: string;
     port: number;
     user: string;
@@ -11,7 +11,7 @@ export default interface DBConfig {
     table: string;
 };
 
-export default class DB {
+export class DB {
     private pollConnexion: mariadb.PoolConnection | undefined;
     public host: string;
     public port: number;

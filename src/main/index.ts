@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain, IpcMainEvent,screen } from 'electron';
-import db from "./db";
+import {DB} from "./db";
 import {User,checkUser} from './utilisateur';
 import path from 'path';
 
@@ -26,7 +26,16 @@ function createWindow() {
 
 app.on('ready', () => {
 
-
+  new DB({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'raspberry',
+    database: 'testFIN',
+    userCollum: 'nom',
+    passwordCollum: 'prenom',
+    table: 'user',
+  });
   ipcMain.handle("connect-user", checkUser);
 
   createWindow();
