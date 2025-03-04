@@ -79,11 +79,11 @@ export class DB {
                     } else {
                         resolve(false);
                     }
-                }).catch(() => {
-                    reject();
+                }).catch((err) => {
+                    reject(err);
                 });
             } else {
-                reject();
+                reject("pas de poll Con");
             }
         });
     };

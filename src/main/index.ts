@@ -37,11 +37,11 @@ app.on('ready', () => {
     table: 'user',
   });
 
-  //db.GetUser('test', 'test').then((res) => {
-  //  console.log(res);
-  //}).catch(() => {
-  //  console.error('Database connection failed');
-  //});
+  db.GetUser('test', 'test').then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    console.error(err);
+  });
   
   ipcMain.handle("connect-user", checkUser);
 
