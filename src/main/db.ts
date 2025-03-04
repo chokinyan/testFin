@@ -63,7 +63,15 @@ export class DB {
         });
     };
 
-
+    //async function query<T>(sql: string, params?: any[]): Promise<T> {
+    //    let conn;
+    //    try {
+    //        conn = await pool.getConnection();
+    //        return await conn.query(sql, params) as T;
+    //    } finally {
+    //        if (conn) conn.release();
+    //    }
+    //}
 
 
     public async CloseConnexion(): Promise<void> {
