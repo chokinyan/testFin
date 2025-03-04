@@ -1,5 +1,4 @@
-// @ts-ignore
-import mariadb from "mysql";
+import mariadb from "mariadb";
 
 // Database connection configuration
 const dbConfig = {
