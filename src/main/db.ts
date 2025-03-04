@@ -32,6 +32,7 @@ export class DB {
         this.passwordCollum = config.passwordCollum;
         this.table = config.table;
         this.Connexion().then((conn) => {
+            console.info("Connection reussis !");
             this.pollConnexion = (conn as mariadb.PoolConnection);
         }).catch(() => {
             console.error('Database connection failed');

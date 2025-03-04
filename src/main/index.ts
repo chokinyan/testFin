@@ -26,7 +26,7 @@ function createWindow() {
 
 app.on('ready', () => {
 
-  new DB({
+  const db = new DB({
     host: 'localhost',
     port: 3306,
     user: 'root',
@@ -36,6 +36,13 @@ app.on('ready', () => {
     passwordCollum: 'prenom',
     table: 'user',
   });
+
+  //db.GetUser('test', 'test').then((res) => {
+  //  console.log(res);
+  //}).catch(() => {
+  //  console.error('Database connection failed');
+  //});
+  
   ipcMain.handle("connect-user", checkUser);
 
   createWindow();
