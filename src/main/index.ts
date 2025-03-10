@@ -1,6 +1,6 @@
-import { app, BrowserWindow, ipcMain, IpcMainEvent,screen } from 'electron';
-import {DB} from "./db";
-import {User,checkUser} from './utilisateur';
+import { app, BrowserWindow, ipcMain, IpcMainEvent, screen } from 'electron';
+import { DB } from "./db/db";
+import { User, checkUser } from './utilisateur';
 import path from 'path';
 
 let mainWindow: BrowserWindow;
@@ -24,28 +24,36 @@ function createWindow() {
   mainWindow.loadFile(path.join(__dirname, '../../public/index.html'));
 }
 
+const db: DB = new DB({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'raspberry',
+  database: 'testFIN',
+  userCollum: 'nom',
+  passwordCollum: 'prenom',
+  table: 'user',
+});
+
+db.on('disconnect', (_event) => {
+  console.log('Database disconnected');
+});
+
+db.on('connect', (_event) => {
+  console.log('Database connected');
+  db.GetUser('test', 'test');
+});
+
+db.on('query', (event) => {
+  console.log('Query:', event);
+});
+
 app.on('ready', () => {
 
-  const db = new DB({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'raspberry',
-    database: 'testFIN',
-    userCollum: 'nom',
-    passwordCollum: 'prenom',
-    table: 'user',
-  });
-
-  db.GetUser('test', 'test').then((res) => {
-    console.log(res);
-  }).catch((err) => {
-    console.error(err);
-  });
-  
   ipcMain.handle("connect-user", checkUser);
 
   createWindow();
+
 });
 
 app.on('window-all-closed', () => {
